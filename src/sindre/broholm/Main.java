@@ -1,72 +1,34 @@
 package sindre.broholm;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static sindre.broholm.MovieGenre.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Book book1 = new Book();
-        book1.author = "Sindre Sæther";
-        book1.title = "How to OOP in java part 1";
-        book1.price = 999;
+        List<Product> products = new ArrayList<>();
+        products.add(new Book("Sindre Sæther", "How to OOP in java", 599, 12));
+        products.add(new Book("Fredrik", "How OOP really works in java", 699, 13));
+        products.add(new ChildrensBook("Playing with fire", "Pyro Man", 666, 15, "From 3 years"));
+        products.add(new MovieWithDirector("Up", 299, 123, DRAMA, "Sindre Broholm"));
+        products.add(new MovieWithDirector("Under", 299, 124, DRAMA, "Sindre Broholm"));
+        products.add(new Movie("Left", 299, 125, DRAMA));
+        products.add(new Movie("Right", 299, 126, DRAMA));
 
-        Book book2 = new Book();
-        book2.author = "Ingvild";
-        book2.title = "How to OOP in java part 2";
-        book2.price = 991;
+        for (Product product : products) {
+            product.printDetails();
+        }
 
-        /*printBookDetails(book1);
-        printBookDetails(book2);*/
-
-        Movie movie1 = new Movie();
-        movie1.Title = "How to avoid Mooses";
-        movie1.Genre = DOCUMENTARY;
-        movie1.Price = 350;
-
-        Movie movie2 = new Movie();
-        movie2.Title = "Two tomatoes one bottle";
-        movie2.Genre = ACTION;
-        movie2.Price = 399;
-
-        Book[] books = new Book[2];
-        books[0] = new Book();
-        books[0].title = "Elevator talk 123";
-        books[0].author = "Stian";
-        books[0].price = 312;
-        books[1] = new Book();
-        books[1].title = "how to fill a bottle with water";
-        books[1].author = "Susan spring";
-        books[1].price = 202;
-
-/*        printMovieDetails(movie1);
-        printMovieDetails(movie2);*/
-       /* for (Book book : books) {
-            printBookDetails(book);
+/*        for (Product prod :
+                products) {
+            System.out.println(prod.findProductById(13, products));
+            break;
         }*/
 
 
-        Movie[] movies = new Movie[2];
-        movies[0] = new Movie();
-        movies[0].Title = "Eagle invasion";
-        movies[0].Genre = COMEDY;
-        movies[0].Price = 299;
-        movies[1] = new Movie();
-        movies[1].Title = "The rise of the Worms";
-        movies[1].Genre = DRAMA;
-        movies[1].Price = 399;
-
-        /*for (int i = 0; i < movies.length; i++) {
-            printMovieDetails(movies[i]);
-        }*/
-    }
-
-
-    public static void printBookDetails(Book book) {
-        System.out.printf("Title: %s%nAuthor: %s%nPrice: %d,-kr%n%n", book.title, book.author, book.price);
-    }
-
-    public static void printMovieDetails(Movie movie) {
-        System.out.printf("Title: %s%nGenre: %s%nPrice: %d,-kr%n%n", movie.Title, movie.Genre, movie.Price);
     }
 }
