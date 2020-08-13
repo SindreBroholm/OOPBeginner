@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Movie implements Product {
+public class Movie implements Product, Comparable<Movie> {
     private String title;
     private MovieGenre genre = MovieGenre.notSet;
     protected int price = -1;
@@ -61,5 +61,32 @@ public class Movie implements Product {
             System.out.println("Product ID: Not set!");
         }
 
+    }
+
+    @Override
+    public int compareTo(Movie movie) {
+        int temp;
+        if(getProductId() > movie.getProductId()){
+            temp= 1;
+        } else if (getProductId() == movie.getProductId()){
+            temp= 0;
+        }else{
+            temp = -1;
+        }
+        return temp;
+    }
+
+
+    public String findProductById(long inputFromUser, List<Product> products){
+        String temp = null;
+        for (Product prod: products) {
+            if(getProductId() == inputFromUser){
+                temp = ("FOUND THIS PRODUCT: \n" + prod.toString());
+                return temp;
+
+            }
+        }
+        temp = "No item found";
+        return temp;
     }
 }
